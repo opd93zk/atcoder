@@ -6,12 +6,13 @@ OJ_INF = oj.inf
 TIME_LIST = time.list
 
 # スクリプト変数
-OJD = bin/ojd.sh
-SL = bin/save.sh
-WL = bin/write_log.sh
-CS = bin/check_saved.sh
-CLIP = bin/clip.sh
-U2P = bin/url2path.sh
+SHELL= /bin/bash
+OJD = $(SHELL) bin/ojd.sh
+SL = $(SHELL) bin/save.sh
+WL = $(SHELL) bin/write_log.sh
+CS = $(SHELL) bin/check_saved.sh
+CLIP = $(SHELL) bin/clip.sh
+U2P = $(SHELL) bin/url2path.sh
 
 # コンパイルオプション変数
 VER = 12
@@ -31,7 +32,7 @@ GCH = $(GCH_DIR)/oj.gch
 # 導出変数
 TEMPLATES = $(shell ls template)
 URL = $(shell head -n1 $(OJ_INF))
-FILE_PATH = $(shell $(U2P) $(URL) || echo problem/others)
+FILE_PATH = $(shell $(U2P) "$(URL)")
 
 
 
