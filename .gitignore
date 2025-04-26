@@ -1,0 +1,7 @@
+/*.*
+!/.vscode
+!/.gitignore
+/test/
+/include/*
+!include/ac-library
+!include/ownenv.h

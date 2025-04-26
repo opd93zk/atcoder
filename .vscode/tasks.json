@@ -1,0 +1,72 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "c++ build for AtCoder",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "make",
+            "args": [
+                "${fileBasenameNoExtension}.out"
+            ],
+            "problemMatcher" : [
+                "$gcc"
+            ],
+            "group": {
+                "kind" : "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "c++ header build for AC",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "make",
+            "args": [
+                "gch"
+            ],
+            "problemMatcher" : [
+                "$gcc"
+            ],
+            "group": {
+                "kind" : "build",
+            }
+        },
+        {
+            "label": "download test cases",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "test ${input:problemUrl} && rm -f test/*.in test/*.out && oj d ${input:problemUrl} || true",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ojs",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "oj t -S -N && oj s ${input:problemUrl} ${file} || echo faile"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "dependsOn": ["c++ build for AtCoder", "download test cases"]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "problemUrl",
+            "type": "promptString",
+            "description": "URL of Problem",
+        }
+    ]
+}
